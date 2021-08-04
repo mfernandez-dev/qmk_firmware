@@ -9,7 +9,8 @@ enum layers {
 
 enum tapDance {
     TD_FLT,
-    TD_SCL
+    TD_SCL,
+    TD_CTB
 };
 
 #define LOWER MO(_LOWER)
@@ -23,6 +24,7 @@ enum tapDance {
 #define CH_LAN A(KC_LSFT) //alt + shift cambio idioma windows
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_FLT] = ACTION_TAP_DANCE_DOUBLE(KC_F13, KC_LALT),  // one tap f13, two taps alt
-    [TD_SCL] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS)  // one tap sift, two taps caps lock
+    [TD_FLT] = ACTION_TAP_DANCE_DOUBLE(KC_F13, KC_LALT),   // one tap f13, two taps alt
+    [TD_SCL] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),  // one tap shift, two taps caps lock
+    [TD_CTB] = ACTION_TAP_DANCE_DOUBLE(KC_TAB, A(KC_TAB))  // one tap tab, two taps change window (alt+tab)
 };
