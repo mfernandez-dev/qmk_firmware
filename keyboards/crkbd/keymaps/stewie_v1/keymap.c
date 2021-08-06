@@ -1,6 +1,9 @@
 #include QMK_KEYBOARD_H
 #include "keycodes.h"
-#include "oled.h"
+
+#ifdef OLED_DRIVER_ENABLE
+#    include "oled.c"
+#endif
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
