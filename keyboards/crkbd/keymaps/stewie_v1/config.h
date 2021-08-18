@@ -10,4 +10,4 @@
 
 #define OLED_FONT_H "keyboards/crkbd/keymaps/stewie_v1/glcdfont.c"
 
-#define TAPPING_TERM 300
+#define TAPPING_TERM 200
