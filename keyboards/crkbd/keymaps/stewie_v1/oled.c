@@ -28,6 +28,7 @@ void render_status(void) {
 
     case _LOWER:
         oled_write_P(num_layer, false);
+        oled_write_P(PSTR(" "), false);
         break;
     case _RAISE:
         oled_write_P(symb_layer, false);
@@ -36,7 +37,7 @@ void render_status(void) {
         oled_write_P(funct_layer, false);
         break;
     default:
-        oled_write_ln_P(PSTR("UNDEF"), false);
+        oled_write_P(PSTR("UNDEF"), false);
 
     }
     // Host Keyboard LED Status
@@ -50,8 +51,8 @@ void render_status(void) {
 }
 
 oled_rotation_t oled_init_user (oled_rotation_t rotation) {
-    return OLED_ROTATION_180;
-    // return OLED_ROTATION_270;
+    // return OLED_ROTATION_180;
+    return OLED_ROTATION_270;
 }
 
 static void eva_logo(void) {
@@ -79,7 +80,6 @@ static void nerv_logo(void) {
 void oled_task_user(void) {
     if (is_master) {
         render_status();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
-        oled_write_ln_P(PSTR(" "),false);
         oled_write_ln_P(PSTR(" "),false);
         oled_write_ln_P(PSTR(" "),false);
         oled_write_ln_P(PSTR(" "),false);
