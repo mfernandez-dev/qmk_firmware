@@ -2,6 +2,7 @@
 
 #include "split_util.h"
 
+
 extern uint8_t is_master;
 
 
@@ -15,6 +16,7 @@ void render_status(void) {
     static const char PROGMEM num_layer[] = {0x9b, 0x9c, 0x9d, 0};
     static const char PROGMEM funct_layer[] = {0xb7, 0xb8, 0xb9, 0xba, 0};
     static const char PROGMEM symb_layer[] = {0xd7, 0xd8, 0xd9, 0xda, 0};
+    static const char PROGMEM disc_layer[] = {0xdb, 0xdc, 0xde, 0xdf, 0};
 
     static const char PROGMEM indicator[] = {0xbb, 0};
 
@@ -30,12 +32,19 @@ void render_status(void) {
         oled_write_P(num_layer, false);
         oled_write_P(PSTR(" "), false);
         break;
+
     case _RAISE:
         oled_write_P(symb_layer, false);
         break;
+
     case _FUNCT:
         oled_write_P(funct_layer, false);
         break;
+
+    case _QWERT2:
+        oled_write_P(disc_layer, false);
+        break;
+
     default:
         oled_write_P(PSTR("UNDEF"), false);
 
@@ -51,8 +60,13 @@ void render_status(void) {
 }
 
 oled_rotation_t oled_init_user (oled_rotation_t rotation) {
-    // return OLED_ROTATION_180;
-    return OLED_ROTATION_270;
+    if (is_master){
+        return OLED_ROTATION_270;
+    } else {
+        return OLED_ROTATION_180;
+    }
+    
+    
 }
 
 static void eva_logo(void) {
